@@ -1,0 +1,6 @@
+Current projects:
+
+wifi-ethernet-router:
+   Sets up the Raspberry PI to share the WIFI connection with the ethernet
+   connection so that any devices connected to the ethernet can get out to the
+   Internet.
