@@ -1,0 +1,36 @@
+# This ANSIBLE playbook sets up the Raspberry PI to make the WIFI the main
+# internet connection and then to activate the ethernet connection and share
+# the main WIFI connection with any devices connected to the ethernet port.
+
+---
+
+  - name: WIFI-ETHERNET router
+    hosts: localhost
+    become: yes
+    tasks:
+
+      - name: Install needed packages
+        apt:
+          name: dnsmasq
+          state: present
+
+      - name: Set up configuration files.
+        copy:
+          src: "./{{ item }}"
+          dest: "/{{ item }}"
+          owner: root
+          group: root
+          mode: u=rw,g=r
+        loop:
+          - etc/dhcpcd.conf
+          - etc/dnsmasq.conf
+          - etc/iptables.conf
+          - etc/rc.local
+          - etc/network/interfaces
+          - etc/sysctl.conf
+
+      - name: Start dnsmasq service.
+        service:
+          name: dnsmasq
+          enabled: yes
+          state: started
