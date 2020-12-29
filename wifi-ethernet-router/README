@@ -1,0 +1,40 @@
+This project sets up a Raspberry PI to connect to the internet using the WIFI
+and share the WIFI connection with the Ethernet connection so that any router
+or device connected to the Ethernet connection can also use the internet.
+
+Installation Instructions
+=========================
+
+- Install Raspberry Pi OS (Raspbian) on a microSD card
+  and insert it into the Raspberry PI microSD card slot.
+
+- Connect a monitor, mouse, and keyboard to the Raspberry PI
+
+- Power up the Raspberry PI
+
+  It should start up, and then reboot itself after resizing the partitions.
+
+- Go through the guided setup, finishing by configuring the WIFI connection.
+
+- Configure SSH by going to the Raspberry PI icon and selecting
+
+  Preferences -> Raspberry PI Configuration menu item.
+
+  Select the "Interfaces" tab and click "Enable" button on the SSH line. 
+
+
+  Then press the "OK" button.
+
+- Start a terminal windoww by selecting "Terminal" icon.
+
+- Type:
+
+  git clone https://github.com/davidsummers/pi-projects
+  cd pi-projects/wifi-ethernet-router
+  make
+  sudo reboot
+
+- The Raspberry PI should complete all the above without errors, and reboot.
+
+- After it is rebooted, any router or device you plug into the ethernet port
+  should get access to the Internet.
