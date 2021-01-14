@@ -31,7 +31,6 @@
           group: root
           mode: u=rw,g=r
         loop:
-          - etc/dhcp/dhclient-exit-hooks.d/prefix_delegation
           - etc/dhcpcd.conf
           - etc/dnsmasq.conf
           - etc/iptables.conf
