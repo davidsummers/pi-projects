@@ -14,8 +14,12 @@ iface eth0 inet static
     network 192.168.1.0
     broadcast 192.168.1.255
 
+iface eth0 inet6 manual
+
 auto wlan0
 allow-hotplug wlan0
 iface wlan0 inet manual
 wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 
+iface wlan0 inet6 dhcp
+    request_prefix 1
