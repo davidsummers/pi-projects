@@ -18,11 +18,6 @@
           - radvd
           - tcpdump
 
-      - name: Created needed directories.
-        file:
-          path: /etc/dhcp/dhclient-exit-hooks.d
-          state: directory
-
       - name: Set up configuration files.
         copy:
           src: "./{{ item }}"
