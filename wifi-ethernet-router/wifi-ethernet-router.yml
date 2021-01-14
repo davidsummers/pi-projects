@@ -11,8 +11,17 @@
 
       - name: Install needed packages
         apt:
-          name: dnsmasq
+          name: "{{ item }}"
           state: present
+        loop:
+          - dnsmasq
+          - radvd
+          - tcpdump
+
+      - name: Created needed directories.
+        file:
+          path: /etc/dhcp/dhclient-exit-hooks.d
+          state: directory
 
       - name: Set up configuration files.
         copy:
@@ -22,15 +31,20 @@
           group: root
           mode: u=rw,g=r
         loop:
+          - etc/dhcp/dhclient-exit-hooks.d/prefix_delegation
           - etc/dhcpcd.conf
           - etc/dnsmasq.conf
           - etc/iptables.conf
+          - etc/radvd.conf
           - etc/rc.local
           - etc/network/interfaces
           - etc/sysctl.conf
 
-      - name: Start dnsmasq service.
+      - name: Start needed services.
         service:
-          name: dnsmasq
+          name: "{{ item }}"
           enabled: yes
           state: started
+        loop:
+          - dnsmasq
+          - radvd
